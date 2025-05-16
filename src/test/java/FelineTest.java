@@ -1,38 +1,31 @@
 import com.example.Feline;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Spy;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
 public class FelineTest {
-
-    @Spy
-    Feline felineSpy;
 
     @Test
     public void testEatMeat() throws Exception {
+        Feline feline = new Feline();
         List<String> expectedFood = List.of("Животные", "Птицы", "Рыба");
-        doReturn(expectedFood).when(felineSpy).getFood("Хищник");
 
-        List<String> actualFood = felineSpy.eatMeat();
+        List<String> actualFood = feline.eatMeat();
 
         assertEquals(expectedFood, actualFood);
-        verify(felineSpy, times(1)).getFood("Хищник");
     }
 
     @Test
     public void testGetFamily() {
-        assertEquals("Кошачьи", felineSpy.getFamily());
+        Feline feline = new Feline();
+        assertEquals("Кошачьи", feline.getFamily());
     }
 
     @Test
     public void testGetKittens() {
-        assertEquals(1, felineSpy.getKittens());
+        Feline feline = new Feline();
+        assertEquals(1, feline.getKittens());
     }
 }
